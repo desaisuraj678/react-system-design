@@ -1,0 +1,13 @@
+.accordionItem{
+    border: 1px solid gray;
+    background-color: rebeccapurple;
+    width: 600px;
+    padding: 8px;
+    border-radius: 4px;
+}
+.accordionWrapper{
+    flex: 1;
+    align-self: center;
+    align-content: center;
+    background-color: white;
+}
