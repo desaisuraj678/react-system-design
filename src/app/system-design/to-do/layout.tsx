@@ -1,5 +1,5 @@
 
-export default function ToDoLayout({
+export default function ticTacToeLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

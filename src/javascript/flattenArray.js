@@ -16,7 +16,7 @@ function flattenArray(arr){
         }
     }
 }
-const arr = [1,2,[3,4],[5,6]]
+const arr = [1,2,[3,4],[5,[6]]]
 flattenArray(arr)
 
 console.log(output)
