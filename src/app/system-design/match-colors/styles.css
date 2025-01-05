@@ -1,0 +1,20 @@
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+}
+
+.boxes {
+  height: 50vh;
+  width: 50vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: yellow;
+}
+
+.box {
+  width: 25%;
+  aspect-ratio: 1;
+  background-color: red;
+  border: 1px solid wheat;
+}

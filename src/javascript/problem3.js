@@ -8,6 +8,7 @@
 (function (w){
     let timeoutIds = [];
     let origininalSetTimeout = w.setTimeout;
+    // Monkey paching original setTimeout
     w.setTimeout = function(...args){
      let id = origininalSetTimeout(...args);
      timeoutIds.push(id)
