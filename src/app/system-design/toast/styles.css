@@ -1,0 +1,54 @@
+.wrapper{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  justify-content: center;
+}
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.toast-comp {
+  width: 300px;
+  height: 60px;
+  background-color: green;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.success {
+  background-color: green;
+}
+
+.info {
+   background-color: blue;
+}
+
+.warning {
+  background-color: yellow;
+}
+
+.error {
+  background-color: red;
+}
+
+.toasts {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.cross {
+  cursor: pointer;
+}
