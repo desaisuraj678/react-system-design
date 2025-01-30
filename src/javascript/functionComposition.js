@@ -19,5 +19,5 @@ var compose = function (functions) { // eg. functions = [(x) => x + 1, (x) => 2 
   };
 };
 
-const fn = compose([(x) => x + 1, (x) => 2 * x]);
-fn(4); // 9
+const composedFunction = compose([(x) => x + 1, (x) => 2 * x]);
+composedFunction(4); // 9

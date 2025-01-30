@@ -78,7 +78,7 @@ class FeatureFlag {
     if (this.instance) {
       // This is used when many calls are happening in parrallel. So when one call is in progress this.instance is set and for subsequent calls,
       // it queues the calls
-      // wec can attach any number of then callbacks which gets called one by one and return value of prev then is passed to next then 
+      // we can attach any number of then callbacks which gets called one by one and return value of prev then is passed to next then 
       return this.instance
         .then(() => {
           return FeatureFlag.returnFlag(featureName,this.featureFlagCache,defaultValue);

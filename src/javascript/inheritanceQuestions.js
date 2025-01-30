@@ -13,7 +13,7 @@ class Employee extends Person {
         super(name);
         this.id = id;
     }
-    print(){ // // this is array function so gets attached to Employee.prototype
+    print(){ // // this is not an arrow function so gets attached to Employee.prototype
         console.log(this.name,this.id)
     }
 }

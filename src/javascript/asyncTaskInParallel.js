@@ -30,7 +30,7 @@ var promiseAll = function(functions) {
     })
 };
 
-// soltion using async await
+// solution using async await
 // VVImp : using ForEach instead of normal for loop because in normal for loop next function call has to wait before prev call , so it executes serially
 
 // var promiseAll = function(functions) {
