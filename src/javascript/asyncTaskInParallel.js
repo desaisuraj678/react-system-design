@@ -25,6 +25,11 @@ var promiseAll = function(functions) {
                 }
             }).catch((err)=>{
                 reject(err)
+                /**
+                 * The other promises are still executing, but their results are no longer relevant because the outer promise has already been rejected.
+                    These promises will continue to run in the background unless they are explicitly canceled 
+                        (which is not possible with standard JavaScript promises). However, their results will be ignored.
+                 */
             })
         }
     })

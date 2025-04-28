@@ -19,3 +19,12 @@ first will override the response of second which is wrong. how do we prevent tha
  
 
 */
+
+const controller = new AbortController();
+const {signal,abort} = controller;
+
+fetch('url',signal)
+
+abort()
+
+

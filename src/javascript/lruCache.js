@@ -14,14 +14,15 @@ class LRUCache {
   set(key, val) {
     if (this.get(key) == -1) {
       if (this.map.size == this.capacity) {
-        for (let item of this.map) {
-          this.map.delete(item[0]);
+        for (let [key1] of this.map) {
+          this.map.delete(key1);
           break
         }
       }
     }
     this.map.set(key, val);
   }
+  // The Map object holds key-value pairs and remembers the original insertion order of the keys
 
   get(key) {
     if (this.map.has(key)) {

@@ -1,5 +1,6 @@
 function Person(name,profession){
-    // 1. a new empty object is created and assigned to this. this = {}
+    // 1. a new empty object is created and assigned to this. this = {} 
+    // this.__proto gets assigned to Person.Prototype
 
     // 2. A function body executes and can modify this
     this.name = name;

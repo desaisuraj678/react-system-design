@@ -3,7 +3,7 @@ class Person {
     constructor(name){
         this.name = name
     }
-    print = ()=>{ // this is arrow function so gets attached to this, i.e this.print = ()=>{}
+    print = ()=>{ // this is arrow function so gets attached to this(same as normal variable), i.e this.print = ()=>{}
         console.log(this.name)
     }
 }
