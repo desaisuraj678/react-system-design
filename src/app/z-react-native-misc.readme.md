@@ -15,3 +15,7 @@
 - The response is deserialized into a JavaScript Response object
 
 Note: Even if we write own native module to replicate fetch(''), we still need to pass request data to native, so instead using react native's fetch() would be performant.
+
+
+2. There are platform-specific issues when using React Native’s KeyboardAvoidingView.
+- Currently, we can use react-native-keyboard-controller and enforce edge-to-edge mode on Android to handle this more reliably.
