@@ -53,52 +53,64 @@ class FeatureFlag {
     this.instance = null;
   }
 
-  static async returnFlag(featureName,featureFlagCache,defaultValue) {
-    // check if key exists in an object
-    const flagExist = Object.prototype.hasOwnProperty.call(
-      featureFlagCache.flags,
-      featureName
-    );
-
-    if (flagExist) {
-      return Promise.resolve(featureFlagCache.flags[featureName]);
-    } else {
-      return Promise.resolve(defaultValue);
-    }
+  static returnFlag(featureName, cache, defaultValue) {
+    return Object.prototype.hasOwnProperty.call(cache.flags, featureName)
+      ? cache.flags[featureName]
+      : defaultValue;
   }
 
   async getFeatureState(featureName, defaultValue) {
-    const isDataFresh = Date.now() - this.timeStamp < this.featureFlagCache.ttl;
-    const isDataPresent = Object.keys(this.featureFlagCache.flags).length;
+    const isDataFresh =
+      Date.now() - this.timeStamp < this.featureFlagCache.ttl;
+    const isDataPresent =
+      Object.keys(this.featureFlagCache.flags).length > 0;
 
     if (isDataFresh && isDataPresent) {
-      return FeatureFlag.returnFlag(featureName,this.featureFlagCache,defaultValue);
+      /**
+        In an async function:
+            Any returned value is automatically wrapped in Promise.resolve(value)
+
+        An async function always returns a Promise.
+          No exceptions.
+          Rules:
+              return value → Promise.resolve(value)
+              throw error → Promise.reject(error)
+              Returning a Promise → returned as-is (but still awaited internally)
+       */
+      return FeatureFlag.returnFlag(
+        featureName,
+        this.featureFlagCache,
+        defaultValue
+      );
     }
-    
-    if (this.instance) {
-      // This is used when many calls are happening in parrallel. So when one call is in progress this.instance is set and for subsequent calls,
-      // it queues the calls
-      // we can attach any number of then callbacks which gets called one by one and return value of prev then is passed to next then 
-      return this.instance
-        .then(() => {
-          return FeatureFlag.returnFlag(featureName,this.featureFlagCache,defaultValue);
+
+    if (!this.instance) {
+      /* “I cache feature flags with TTL and use an in-flight promise to de-duplicate parallel API calls,
+      ensuring only one backend request is made at a time.” */
+
+      this.instance = getFeatureFlagAPI()
+        .then((res) => {
+          this.featureFlagCache.flags = res;
+          this.timeStamp = Date.now();
         })
-        .catch(() => Promise.resolve(defaultValue));
+        .finally(() => {
+          this.instance = null;
+        });
     }
 
-    this.instance = getFeatureFlagAPI()
-      .then((res) => {
-        this.featureFlagCache.flags = res;
-        this.timeStamp = Date.now();
-        return FeatureFlag.returnFlag(featureName,this.featureFlagCache,defaultValue);
-      })
-      .catch(() => Promise.resolve(defaultValue)).finally(()=>{
-        this.instance = null
-      })
-
-    return this.instance;
+    try {
+      await this.instance;
+      return FeatureFlag.returnFlag(
+        featureName,
+        this.featureFlagCache,
+        defaultValue
+      );
+    } catch {
+      return defaultValue;
+    }
   }
 }
+
 
 const ffInstance = new FeatureFlag();
 

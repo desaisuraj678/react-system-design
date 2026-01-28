@@ -6,13 +6,48 @@ Requirements:
  3. if any accordion is expanded and if its clicked again then that should get closed
 */
 
-/** key knowlege
+/** key knowledge
  * React.memo automatically shallow compares the props passed to the AccordionItem component
  *               If the props (item, isExpanded, onClickHandle) don’t change, the component won't re-render
  * so the accordionData.map logic will run every time which is not heavy but the AccordionItem rerender won't be there (or there wont be any actual dom manipulation)
  * 
  */
 
+
+/**
+ ReactElement vs ReactNode
+
+ ## ReactElement
+
+ - Represents a single JSX element
+
+ - Corresponds to the actual object created by JSX at runtime
+
+ - TypeScript type that describes that object
+
+ - ❌ Cannot be a string or number
+
+ - ❌ Cannot be an array
+
+ - Used when you expect exactly one React element
+
+## ReactNode
+
+- A TypeScript type only
+
+- Represents anything React can render
+
+- Includes React elements, strings, numbers, booleans, null, undefined, and arrays
+
+- ✅ Can be a string or number
+
+- ✅ Can be an array of renderables
+
+- Used when you want to allow flexible renderable content (e.g. children)
+*/
+
+// <Image source={require('@/assets/images/header.png')} /> require() for local assets
+// <Image source={{ uri: 'https://example.com/image.png' }} /> { uri } for remote assets
 
 "use client";
 import { memo, useCallback, useEffect, useState } from "react";

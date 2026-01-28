@@ -38,6 +38,19 @@ In react:
 1. Code Splitting with React.lazy and Suspense
 React provides built-in support for dynamic imports using React.lazy and Suspense.
 
+-  React.lazy is only about code splitting for components.
+Key points
+It:
+ accepts a dynamic import
+ returns a React component
+ The component is loaded only when rendered
+ It works only for default exports
+
+
+- Suspense is not only for code splitting.
+
+It’s a boundary that shows fallback UI while something is “suspending”.
+
 `const SomeComponent = React.lazy(() => import('./SomeComponent'));
 const MyComponent = () => (
   <Suspense fallback={<div>Loading...</div>}>
@@ -45,4 +58,4 @@ const MyComponent = () => (
   </Suspense>
 );`
 
-Also should wrap it with Error boundary for catching errors
+Also should wrap it with Error boundary for catching errors 

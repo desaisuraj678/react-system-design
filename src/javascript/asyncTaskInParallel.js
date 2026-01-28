@@ -2,7 +2,7 @@
  * Execute Asynchronous Functions in Parallel
  *     1. Given an array of asynchronous functions functions
  *     2. return a new promise promise
- *     3. whene all promises from an array are resolved , return the promise with value as output array of all promises. The order of Promises should be retained.
+ *     3. when all promises from an array are resolved , return the promise with value as output array of all promises. The order of Promises should be retained.
  *     4. If any of the promise is rejected then reeturn the Promise with rejected value
  *      
  * 

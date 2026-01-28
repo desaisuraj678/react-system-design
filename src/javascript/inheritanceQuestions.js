@@ -1,7 +1,7 @@
 // 1
 class Person {
     constructor(name){
-        this.name = name
+        this.name = name 
     }
     print = ()=>{ // this is arrow function so gets attached to this(same as normal variable), i.e this.print = ()=>{}
         console.log(this.name)

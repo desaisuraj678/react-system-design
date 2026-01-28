@@ -15,7 +15,7 @@ const x = require('./file.ts')  -> common js module  (found in Node)
 
 1. when we are writing importing es modules in script without any bundler.
   <body>
-    <script scr='./example.js' type='module'>
+    <script src='./example.js' type='module'>
 
     </script>
   </body>

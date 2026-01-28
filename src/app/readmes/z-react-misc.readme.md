@@ -3,7 +3,7 @@ Q. useEffect runs first or its cleanup function ? Does it run on every dependenc
 - Yes useEffect runs on every dependency change of useEffect
 - eg. usefull for avoiding race situations
 
-Q. Does all children of React Context Provider rerun on contexxt state change?
+Q. Does all children of React Context Provider rerun on context state change?
 - No if we handle the context correctly
 
     `import React from "react"
@@ -93,7 +93,7 @@ Q. Does all children of React Context Provider rerun on contexxt state change?
 2. Components as props (composition pattern)
 
 
-const Layout = ({column,content})=>{
+const ComponentWithScroll = ({column,content})=>{
     const [isCollapsed,setIsCollapsed] = useState(false);
     return <div>
     <div style={{width:isCollapsed?10:30}}>

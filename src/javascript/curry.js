@@ -13,7 +13,7 @@
 function curry(fn) {
     // your code here
     return function curried(...args){
-      if(args.length>=fn.length){
+      if(args.length>=fn.length){ // mostly it will return when == but if extra args are provided it will run and will ignore extra args
         return fn.call(this,...args)
       }
       return function(...remainingArgs){

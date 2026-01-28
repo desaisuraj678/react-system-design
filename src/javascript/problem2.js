@@ -11,9 +11,10 @@ class TaskRunner {
     this.queue = [];
   }
 
-  async push(task) {
-    if (this.concurrency > this.currentTasks) {
-      await this.execute(task);
+  // Schedule a task (fire-and-forget)
+  push(task) {
+    if (this.currentTasks < this.concurrency) {
+      this.execute(task);
     } else {
       this.queue.push(task);
     }
@@ -21,17 +22,20 @@ class TaskRunner {
 
   async execute(task) {
     this.currentTasks++;
+
     try {
       await task();
     } finally {
       this.currentTasks--;
-      if (this.currentTasks < this.concurrency && this.queue.length) {
-        let nextTask = this.queue.shift();
+
+      if (this.queue.length > 0 && this.currentTasks < this.concurrency) {
+        const nextTask = this.queue.shift();
         this.execute(nextTask);
       }
     }
   }
 }
+
 
 const taskRunnerInstance = new TaskRunner(3)
 

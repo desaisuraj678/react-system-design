@@ -1,4 +1,9 @@
 
+/**
+ <layout>
+  <page/>
+ </layout> 
+ */
 export default function AccordionLayout({
     children,
   }: Readonly<{

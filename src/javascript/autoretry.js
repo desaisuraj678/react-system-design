@@ -8,6 +8,14 @@ function fetchWithAutoRetry(fetcher, maximumRetryCount = 3) {
     return Promise.reject(
       new Error("maximumRetryCount must be greater than 0")
     );
+    /*
+    What callers usually expect
+    If function is async / promise-based:
+        fetchWithAutoRetry().catch(err => { ... })
+        This ONLY works if:
+              the function throws
+              or returns Promise.reject(...)
+    */
   }
 
   console.log('retrying ..',maximumRetryCount)
